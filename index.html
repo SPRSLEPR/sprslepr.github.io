@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="A luxe, focused app for ambitious women to turn visions into daily momentum." />
+  <title>Aura — The Unfolding</title>
+
+  <style>
+    :root{
+      --bg:#0b0c0f;
+      --surface: rgba(255,255,255,0.06);
+      --surface2: rgba(255,255,255,0.03);
+      --stroke: rgba(255,255,255,0.10);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.62);
+      --muted2: rgba(255,255,255,0.45);
+      --gold: #cbb76a;
+      --gold2: rgba(203,183,106,0.35);
+      --shadow: 0 24px 80px rgba(0,0,0,0.65);
+      --radius: 18px;
+      --radius2: 26px;
+      --max: 1120px;
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      background:
+        radial-gradient(1100px 700px at 20% -10%, rgba(203,183,106,0.10), transparent 60%),
+        radial-gradient(900px 600px at 80% 0%, rgba(203,183,106,0.06), transparent 60%),
+        radial-gradient(1200px 900px at 50% 120%, rgba(255,255,255,0.05), transparent 55%),
+        var(--bg);
+      color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      line-height:1.35;
+      letter-spacing:0.2px;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    .wrap{ max-width:var(--max); margin:0 auto; padding:28px 18px 64px; }
+
+    /* Top bar */
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      padding:14px 16px;
+      border:1px solid var(--stroke);
+      background:linear-gradient(180deg, var(--surface), rgba(255,255,255,0.02));
+      border-radius:var(--radius2);
+      box-shadow: 0 10px 50px rgba(0,0,0,0.35);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      position:sticky;
+      top:14px;
+      z-index:20;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width: 180px;
+    }
+
+    .dot{
+      width:10px;
+      height:10px;
+      border-radius:99px;
+      background:var(--gold);
+      box-shadow: 0 0 0 6px rgba(203,183,106,0.10);
+    }
+
+    .brand h1{
+      font-size:14px;
+      margin:0;
+      letter-spacing: 0.16em;
+      text-transform:uppercase;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .nav{
+      display:flex;
+      gap:14px;
+      align-items:center;
+      justify-content:center;
+      flex:1;
+      flex-wrap:wrap;
+    }
+    .nav a{
+      font-size:12px;
+      letter-spacing:0.16em;
+      text-transform:uppercase;
+      color: var(--muted);
+      padding:10px 12px;
+      border-radius: 999px;
+      border:1px solid transparent;
+    }
+    .nav a:hover{
+      color: rgba(255,255,255,0.88);
+      border-color: rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .cta{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:flex-end;
+      min-width: 180px;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid rgba(203,183,106,0.35);
+      background: linear-gradient(180deg, rgba(203,183,106,0.16), rgba(203,183,106,0.08));
+      color: rgba(255,255,255,0.92);
+      font-size:12px;
+      letter-spacing:0.14em;
+      text-transform:uppercase;
+      box-shadow: 0 12px 40px rgba(203,183,106,0.10);
+    }
+    .pill:hover{ filter: brightness(1.06); }
+
+    /* Hero */
+    .hero{
+      padding:56px 0 30px;
+      display:grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap:28px;
+      align-items:center;
+    }
+
+    @media (max-width: 920px){
+      .hero{ grid-template-columns:1fr; padding-top:36px; }
+      .cta, .brand{ min-width:auto; }
+      .topbar{ position:relative; top:auto; }
+    }
+
+    .kicker{
+      font-size:12px;
+      letter-spacing:0.22em;
+      text-transform:uppercase;
+      color: rgba(203,183,106,0.85);
+      margin:0 0 14px;
+    }
+
+    .title{
+      font-size:52px;
+      margin:0 0 14px;
+      line-height:1.05;
+      letter-spacing:-0.02em;
+    }
+    @media (max-width: 560px){
+      .title{ font-size:40px; }
+    }
+
+    .subtitle{
+      font-size:16px;
+      color: var(--muted);
+      margin:0 0 22px;
+      max-width: 56ch;
+    }
+
+    .heroCard{
+      border-radius: var(--radius2);
+      border: 1px solid var(--stroke);
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .heroCard::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background: radial-gradient(900px 500px at 20% 0%, rgba(203,183,106,0.14), transparent 60%);
+      pointer-events:none;
+    }
+    .heroCardInner{
+      position:relative;
+      padding:18px;
+    }
+    .statRow{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      margin-top:12px;
+    }
+    .stat{
+      padding:14px 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.10);
+    }
+    .stat .label{
+      font-size:11px;
+      color: var(--muted2);
+      letter-spacing:0.18em;
+      text-transform:uppercase;
+      margin-bottom:10px;
+    }
+    .stat .value{
+      font-size:18px;
+      color: rgba(255,255,255,0.92);
+    }
+
+    .btnRow{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
+    .btn{
+      padding:12px 16px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.05);
+      color: rgba(255,255,255,0.86);
+      font-size:13px;
+      letter-spacing:0.08em;
+      text-transform:uppercase;
+    }
+    .btn:hover{ background: rgba(255,255,255,0.07); }
+    .btnPrimary{
+      border-color: rgba(203,183,106,0.35);
+      background: linear-gradient(180deg, rgba(203,183,106,0.18), rgba(203,183,106,0.08));
+    }
+
+    /* Sections */
+    .section{
+      margin-top:46px;
+      padding-top:16px;
+    }
+    .sectionHeader{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:18px;
+      margin-bottom: 16px;
+    }
+    .sectionHeader h2{
+      margin:0;
+      font-size:18px;
+      letter-spacing:0.16em;
+      text-transform:uppercase;
+      color: rgba(255,255,255,0.86);
+    }
+    .sectionHeader p{
+      margin:0;
+      color: var(--muted);
+      max-width: 60ch;
+      font-size:14px;
+    }
+
+    /* Gallery */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:14px;
+    }
+
+    .shot{
+      grid-column: span 6;
+      border-radius: var(--radius2);
+      border:1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.03);
+      overflow:hidden;
+      box-shadow: 0 18px 60px rgba(0,0,0,0.55);
+    }
+    .shotTall{ grid-column: span 6; }
+    @media (max-width: 920px){
+      .shot, .shotTall{ grid-column: span 12; }
+    }
+
+    .shot img{
+      display:block;
+      width:100%;
+      height:auto;
+      background: #000;
+    }
+
+    .shotBody{
+      padding:14px 16px 16px;
+      border-top: 1px solid rgba(255,255,255,0.10);
+      background: linear-gradient(180deg, rgba(0,0,0,0.0), rgba(0,0,0,0.25));
+    }
+
+    .shotHeadline{
+      margin:0 0 6px;
+      font-size:18px;
+      letter-spacing:-0.01em;
+    }
+
+    .shotSub{
+      margin:0;
+      color: var(--muted);
+      font-size:14px;
+    }
+
+    .footer{
+      margin-top:54px;
+      padding:18px 0 0;
+      border-top: 1px solid rgba(255,255,255,0.10);
+      color: var(--muted2);
+      font-size:13px;
+      display:flex;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    .fine{
+      letter-spacing:0.10em;
+      text-transform:uppercase;
+      font-size:11px;
+      color: rgba(203,183,106,0.75);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <div class="brand">
+        <span class="dot" aria-hidden="true"></span>
+        <h1>Aura</h1>
+      </div>
+
+      <nav class="nav">
+        <a href="#screens">Screens</a>
+        <a href="#how">How it works</a>
+        <a href="#privacy">Privacy</a>
+      </nav>
+
+      <div class="cta">
+        <!-- swap this for your App Store link later -->
+        <a class="pill" href="#screens">View Screens</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="top">
+        <div>
+          <p class="kicker">Mindset meets micro-actions</p>
+          <h2 class="title">Turn visions into daily momentum.</h2>
+          <p class="subtitle">
+            A focused, luxe experience that helps you define what matters, take the next small step,
+            and stay consistent without burning out.
+          </p>
+
+          <div class="btnRow">
+            <a class="btn btnPrimary" href="#screens">Explore screenshots</a>
+            <a class="btn" href="#privacy">Privacy policy section</a>
+          </div>
+        </div>
+
+        <aside class="heroCard" aria-label="Highlights">
+          <div class="heroCardInner">
+            <div class="statRow">
+              <div class="stat">
+                <div class="label">Daily sequence</div>
+                <div class="value">Small steps → real progress</div>
+              </div>
+              <div class="stat">
+                <div class="label">Streaks</div>
+                <div class="value">Consistency, tracked</div>
+              </div>
+              <div class="stat">
+                <div class="label">Timeboxing</div>
+                <div class="value">Focus sessions</div>
+              </div>
+              <div class="stat">
+                <div class="label">Milestones</div>
+                <div class="value">Clear path forward</div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="section" id="screens">
+        <div class="sectionHeader">
+          <div>
+            <h2>Screenshots</h2>
+            <p>App Store-style captions you can reuse for your listing.</p>
+          </div>
+        </div>
+
+        <div class="grid">
+          <!-- 1 -->
+          <article class="shot shotTall">
+            <img src="assets/IMG_1588.PNG" alt="Encountering a block screen" loading="lazy" />
+            <div class="shotBody">
+              <h3 class="shotHeadline">Stuck? Get your next move.</h3>
+              <p class="shotSub">Quick guidance to start a tiny step right now.</p>
+            </div>
+          </article>
+
+          <!-- 2 -->
+          <article class="shot shotTall">
+            <img src="assets/IMG_1589.PNG" alt="Vision path home screen" loading="lazy" />
+            <div class="shotBody">
+              <h3 class="shotHeadline">Turn visions into a daily path.</h3>
+              <p class="shotSub">Follow your sequence and build momentum step by step.</p>
+            </div>
+          </article>
+
+          <!-- 3 -->
+          <article class="shot shotTall">
+            <img src="assets/IMG_1590.PNG" alt="Set an Initial Budget Range timer screen" loading="lazy" />
+            <div class="shotBody">
+              <h3 class="shotHeadline">Timebox the work.</h3>
+              <p class="shotSub">Start a focused sprint, set due dates, add visual anchors.</p>
+            </div>
+          </article>
+
+          <!-- 4 -->
+          <article class="shot shotTall">
+            <img src="assets/IMG_1591.PNG" alt="Dashboard streak calendar screen" loading="lazy" />
+            <div class="shotBody">
+              <h3 class="shotHeadline">Track consistency, not perfection.</h3>
+              <p class="shotSub">See today’s progress, streaks, and alignment at a glance.</p>
+            </div>
+          </article>
+
+          <!-- 5 -->
+          <article class="shot shotTall">
+            <img src="assets/IMG_1592.PNG" alt="Manifest vision screen" loading="lazy" />
+            <div class="shotBody">
+              <h3 class="shotHeadline">Name it. Date it. Map it.</h3>
+              <p class="shotSub">Define your vision and lay out milestones that guide you there.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="how">
+        <div class="sectionHeader">
+          <div>
+            <h2>How it works</h2>
+            <p>Keep it simple: define the vision, create milestones, show up daily.</p>
+          </div>
+        </div>
+
+        <div class="grid">
+          <article class="shot" style="grid-column: span 4;">
+            <div class="shotBody" style="border-top:none;">
+              <h3 class="shotHeadline">1) Manifest</h3>
+              <p class="shotSub">Give your vision a name and a deadline that matters.</p>
+            </div>
+          </article>
+
+          <article class="shot" style="grid-column: span 4;">
+            <div class="shotBody" style="border-top:none;">
+              <h3 class="shotHeadline">2) Sequence</h3>
+              <p class="shotSub">Break it down into milestones that feel doable.</p>
+            </div>
+          </article>
+
+          <article class="shot" style="grid-column: span 4;">
+            <div class="shotBody" style="border-top:none;">
+              <h3 class="shotHeadline">3) Execute</h3>
+              <p class="shotSub">Timebox a session and finish one small thing today.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="privacy">
+        <div class="sectionHeader">
+          <div>
+            <h2>Privacy</h2>
+            <p>Use this as a lightweight privacy policy section until you publish a full page.</p>
+          </div>
+        </div>
+
+        <div class="shot">
+          <div class="shotBody" style="border-top:none;">
+            <p class="fine">Privacy statement</p>
+            <p style="margin:10px 0 0; color: var(--muted); font-size:14px; max-width: 80ch;">
+              Aura is designed to help you plan and track personal goals. We don’t sell your personal data.
+              If you add photos or notes, they’re used to support your experience in the app.
+              If you later add analytics or accounts, update this section to clearly explain what’s collected and why.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="footer">
+        <div>© <span id="year"></span> Aura</div>
+        <div class="fine"><a href="#top">Back to top</a></div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
