@@ -1,1 +1,173 @@
 
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Privacy Policy — Aura</title>
+  <meta name="description" content="Privacy Policy for Aura" />
+
+  <style>
+    :root{
+      --bg:#0b0c0f;
+      --surface: rgba(255,255,255,0.06);
+      --stroke: rgba(255,255,255,0.10);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.62);
+      --gold:#cbb76a;
+      --radius: 22px;
+      --max: 900px;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      background:
+        radial-gradient(1100px 700px at 20% -10%, rgba(203,183,106,0.10), transparent 60%),
+        radial-gradient(900px 600px at 80% 0%, rgba(203,183,106,0.06), transparent 60%),
+        var(--bg);
+      color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      line-height:1.55;
+    }
+    a{ color:var(--gold); text-decoration:none; }
+    a:hover{ text-decoration:underline; }
+
+    .wrap{ max-width:var(--max); margin:0 auto; padding:28px 18px 70px; }
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      padding:14px 16px;
+      border:1px solid var(--stroke);
+      background:linear-gradient(180deg, var(--surface), rgba(255,255,255,0.02));
+      border-radius: 28px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      position:sticky;
+      top:14px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      letter-spacing:0.18em;
+      text-transform:uppercase;
+      font-size:12px;
+      color:rgba(255,255,255,0.86);
+    }
+    .dot{
+      width:10px; height:10px; border-radius:999px;
+      background:var(--gold);
+      box-shadow: 0 0 0 6px rgba(203,183,106,0.10);
+    }
+
+    .card{
+      margin-top:18px;
+      padding:22px 18px;
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.03);
+    }
+
+    h1{ margin:0; font-size:34px; line-height:1.15; }
+    .sub{ margin:10px 0 0; color:var(--muted); font-size:14px; }
+
+    h2{
+      margin:24px 0 10px;
+      font-size:14px;
+      letter-spacing:0.16em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,0.88);
+    }
+    p, li{ color:rgba(255,255,255,0.80); font-size:15px; }
+    ul{ margin:10px 0 0 18px; }
+
+    .footer{
+      margin-top:26px;
+      padding-top:16px;
+      border-top:1px solid rgba(255,255,255,0.10);
+      color:rgba(255,255,255,0.55);
+      font-size:13px;
+      display:flex;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand"><span class="dot"></span> Aura</div>
+      <div>
+        <a href="index.html">Home</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h1>Privacy Policy</h1>
+      <p class="sub">Last updated: February 12, 2026</p>
+    </div>
+
+    <div class="card">
+      <p>
+        This Privacy Policy explains how we collect, use, and protect information when you use Aura.
+        By using the Service, you agree to this policy.
+      </p>
+
+      <h2>Information We Collect</h2>
+      <ul>
+        <li><strong>Usage data</strong> (e.g., device info, basic diagnostics, app interactions)</li>
+        <li><strong>Content you provide</strong> (e.g., goals/visions, notes you enter)</li>
+        <li><strong>Photos/camera</strong> only if you grant permission for a feature that needs it</li>
+      </ul>
+
+      <h2>How We Use Information</h2>
+      <ul>
+        <li>Provide and improve app features</li>
+        <li>Support requests and troubleshooting</li>
+        <li>Security and fraud prevention</li>
+      </ul>
+
+      <h2>Sharing</h2>
+      <p>
+        We don’t sell your personal data. We may share limited data with service providers
+        (e.g., analytics or payments) only to operate the app.
+      </p>
+
+      <h2>Retention</h2>
+      <p>
+        We keep data only as long as needed for the purposes described above and to meet legal/security requirements.
+      </p>
+
+      <h2>Your Choices</h2>
+      <ul>
+        <li>You can disable permissions (camera/photos) in iOS Settings</li>
+        <li>You can contact us to request deletion where applicable</li>
+      </ul>
+
+      <h2>Contact</h2>
+      <p>
+        Email: <a href="mailto:support@yourdomain.com">support@yourdomain.com</a>
+      </p>
+
+      <p style="color:rgba(255,255,255,0.62); font-size:13px; margin-top:14px;">
+        Replace the email with your real support email.
+      </p>
+    </div>
+
+    <div class="footer">
+      <div>© <span id="year"></span> Aura</div>
+      <div><a href="index.html">Back to Home</a></div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
