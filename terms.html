@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Terms of Service — Aura" />
+  <title>Terms of Service — Aura</title>
+
+  <style>
+    :root{
+      --bg:#0b0c0f;
+      --surface: rgba(255,255,255,0.06);
+      --stroke: rgba(255,255,255,0.10);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.62);
+      --gold:#cbb76a;
+      --radius2: 26px;
+      --max: 980px;
+      --shadow: 0 24px 80px rgba(0,0,0,0.65);
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      background:
+        radial-gradient(1100px 700px at 20% -10%, rgba(203,183,106,0.10), transparent 60%),
+        radial-gradient(900px 600px at 80% 0%, rgba(203,183,106,0.06), transparent 60%),
+        radial-gradient(1200px 900px at 50% 120%, rgba(255,255,255,0.05), transparent 55%),
+        var(--bg);
+      color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      line-height:1.6;
+      letter-spacing:0.2px;
+    }
+
+    a{ color:var(--gold); text-decoration:none; }
+    a:hover{ text-decoration:underline; }
+
+    .wrap{ max-width:var(--max); margin:0 auto; padding:28px 18px 70px; }
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      padding:14px 16px;
+      border:1px solid var(--stroke);
+      background:linear-gradient(180deg, var(--surface), rgba(255,255,255,0.02));
+      border-radius:var(--radius2);
+      box-shadow: 0 10px 50px rgba(0,0,0,0.35);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      position:sticky;
+      top:14px;
+      z-index:20;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      letter-spacing:0.18em;
+      text-transform:uppercase;
+      font-size:12px;
+      color:rgba(255,255,255,0.86);
+    }
+    .dot{
+      width:10px; height:10px; border-radius:999px;
+      background:var(--gold);
+      box-shadow: 0 0 0 6px rgba(203,183,106,0.10);
+    }
+
+    .nav{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .nav a{
+      display:inline-flex;
+      align-items:center;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.04);
+      color: rgba(255,255,255,0.80);
+      font-size:12px;
+      letter-spacing:0.14em;
+      text-transform:uppercase;
+    }
+    .nav a:hover{ background: rgba(255,255,255,0.06); }
+
+    .card{
+      margin-top:18px;
+      padding:22px 18px;
+      border-radius: var(--radius2);
+      border:1px solid rgba(255,255,255,0.12);
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      box-shadow: var(--shadow);
+    }
+
+    /* Make imported terms look like your site */
+    .doc h1{ margin:0 0 10px; font-size:34px; line-height:1.15; }
+    .doc h2{
+      margin:26px 0 10px;
+      font-size:14px;
+      letter-spacing:0.16em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,0.88);
+    }
+    .doc h3{
+      margin:18px 0 8px;
+      font-size:13px;
+      letter-spacing:0.12em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,0.82);
+    }
+    .doc h4{ margin:14px 0 6px; font-size:13px; color:rgba(255,255,255,0.86); }
+    .doc p, .doc li{ color: rgba(255,255,255,0.80); font-size:15px; }
+    .doc ul{ margin:10px 0 0 18px; }
+    .doc strong{ color: rgba(255,255,255,0.90); }
+
+    .subtle{ color: var(--muted); }
+    .loading{ color: var(--muted); font-size:14px; }
+
+    .footer{
+      margin-top:26px;
+      padding-top:16px;
+      border-top:1px solid rgba(255,255,255,0.10);
+      color:rgba(255,255,255,0.55);
+      font-size:13px;
+      display:flex;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand"><span class="dot"></span> Aura</div>
+      <div class="nav">
+        <a href="index.html">Home</a>
+        <a href="privacy.html">Privacy</a>
+      </div>
+    </div>
+
+    <div class="card doc">
+      <div id="termsRoot" class="loading">Loading Terms…</div>
+    </div>
+
+    <div class="footer">
+      <div>© <span id="year"></span> Aura</div>
+      <div><a href="index.html">Back to Home</a></div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Load your existing Terms HTML without you rewriting it
+    fetch("tos.html", { cache: "no-store" })
+      .then(r => {
+        if (!r.ok) throw new Error("Failed to load terms-source.html");
+        return r.text();
+      })
+      .then(html => {
+        const root = document.getElementById("termsRoot");
+
+        // Parse the HTML and extract body content if it exists
+        const doc = new DOMParser().parseFromString(html, "text/html");
+        const bodyContent = (doc.body && doc.body.innerHTML.trim())
+          ? doc.body.innerHTML
+          : html;
+
+        root.classList.remove("loading");
+        root.innerHTML = bodyContent;
+
+        // If the terms file includes Cloudflare email-protection links, replace them.
+        // (GitHub Pages won't serve /cdn-cgi/ scripts.)
+        const cfLinks = root.querySelectorAll('a[href*="/cdn-cgi/l/email-protection"]');
+        cfLinks.forEach(a => {
+          a.href = "mailto:support@yourdomain.com"; // <-- change this
+          a.textContent = "support@yourdomain.com"; // <-- change this
+        });
+
+        // Remove any cloudflare scripts if present
+        root.querySelectorAll('script[src*="/cdn-cgi/"]').forEach(s => s.remove());
+      })
+      .catch(err => {
+        const root = document.getElementById("termsRoot");
+        root.classList.remove("loading");
+        root.innerHTML = `
+          <h1>Terms of Service</h1>
+          <p class="subtle">Couldn’t load <strong>terms-source.html</strong>.</p>
+          <p class="subtle">Make sure it sits next to this file in your repo root.</p>
+          <p class="subtle">Error: ${String(err.message || err)}</p>
+        `;
+      });
+  </script>
+</body>
+</html>
